@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JTC Sports Admin</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      background: #050b1a;
+      color: #fff;
+    }
+
+    .admin-page {
+      max-width: 1100px;
+      margin: auto;
+      padding: 35px 20px 60px;
+    }
+
+    .admin-heading {
+      margin-bottom: 30px;
+    }
+
+    .admin-heading h1 {
+      font-size: clamp(32px, 5vw, 46px);
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .admin-heading p,
+    .muted {
+      color: #b9c6d9;
+      line-height: 1.6;
+    }
+
+    .admin-panel {
+      background: #101d31;
+      border: 1px solid #243b5b;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 28px;
+    }
+
+    .admin-panel h2 {
+      margin-top: 0;
+      font-size: 25px;
+    }
+
+    .admin-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #344967;
+      background: #081426;
+      color: #fff;
+      font: inherit;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      outline: 2px solid #168bff;
+      outline-offset: 1px;
+    }
+
+    .check-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      color: #dce8f8;
+      grid-column: 1 / -1;
+    }
+
+    .check-row input {
+      width: 18px;
+      height: 18px;
+      accent-color: #168bff;
+    }
+
+    .admin-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      grid-column: 1 / -1;
+      margin-top: 4px;
+    }
+
+    .admin-button {
+      border: 0;
+      border-radius: 6px;
+      background: #168bff;
+      color: white;
+      font: inherit;
+      font-weight: bold;
+      padding: 12px 17px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .admin-button:hover {
+      background: #0872db;
+    }
+
+    .admin-button.secondary {
+      background: #243b5b;
+    }
+
+    .admin-button.danger {
+      background: #a82d3a;
+    }
+
+    .admin-button.small {
+      padding: 8px 11px;
+      font-size: 13px;
+    }
+
+    .admin-message {
+      grid-column: 1 / -1;
+      color: #8bcaff;
+      min-height: 20px;
+      margin: 0;
+    }
+
+    .admin-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .admin-item {
+      background: #081426;
+      border: 1px solid #243b5b;
+      border-radius: 8px;
+      padding: 17px;
+      min-width: 0;
+    }
+
+    .admin-item h3 {
+      margin: 0 0 8px;
+      overflow-wrap: anywhere;
+    }
+
+    .admin-item p {
+      color: #b9c6d9;
+      line-height: 1.6;
+      margin: 6px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .item-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 13px;
+    }
+
+    .status-label {
+      display: inline-block;
+      padding: 4px 8px;
+      background: #183b61;
+      color: #8bcaff;
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 4px;
+      margin: 0 5px 5px 0;
+    }
+
+    .empty-state {
+      color: #b9c6d9;
+      padding: 15px 0;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 650px) {
+      .admin-page {
+        padding: 25px 14px 45px;
+      }
+
+      .admin-panel {
+        padding: 17px;
+      }
+
+      .admin-form {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full,
+      .check-row,
+      .admin-actions,
+      .admin-message {
+        grid-column: 1;
+      }
+
+      .admin-actions .admin-button {
+        flex: 1 1 auto;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top-strip">JTC SPORTS ADMIN</div>
+
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <span class="brand-name">JTC SPORTS</span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="watch-live.html">Watch Live</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="highlights.html">Highlights</a>
+      <a href="articles.html">Articles</a>
+      <a href="teams.html">Teams</a>
+      <a href="sponsors.html">Sponsors</a>
+    </nav>
+  </header>
+
+  <main class="admin-page">
+    <section class="admin-heading">
+      <h1>JTC SPORTS <span style="color:#38a7ff;">ADMIN</span></h1>
+      <p>Manage your game schedule and Watch Live videos.</p>
+      <a class="admin-button secondary" href="schedule.html">View Schedule</a>
+      <a class="admin-button secondary" href="watch-live.html">View Watch Live</a>
+    </section>
+
+    <section class="admin-panel">
+      <h2 id="game-form-heading">Add a Game</h2>
+
+      <form id="game-form" class="admin-form">
+        <div class="field">
+          <label for="home-team">Home Team</label>
+          <input id="home-team" required maxlength="100" placeholder="Example: Eureka">
+        </div>
+
+        <div class="field">
+          <label for="away-team">Away Team</label>
+          <input id="away-team" required maxlength="100" placeholder="Example: Fisher">
+        </div>
+
+        <div class="field">
+          <label for="sport">Sport</label>
+          <select id="sport" required>
+            <option value="">Choose a sport</option>
+            <option>Football</option>
+            <option>Basketball</option>
+            <option>Baseball</option>
+            <option>Softball</option>
+            <option>Volleyball</option>
+            <option>Soccer</option>
+            <option>Wrestling</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="game-date">Game Date and Time</label>
+          <input id="game-date" type="datetime-local" required>
+        </div>
+
+        <div class="field full">
+          <label for="broadcast-url">Broadcast Link (optional)</label>
+          <input id="broadcast-url" type="url" placeholder="https://www.youtube.com/live/...">
+        </div>
+
+        <div class="admin-actions">
+          <button class="admin-button" id="save-game-button" type="submit">Add Game</button>
+          <button class="admin-button secondary" id="cancel-game-edit" type="button" hidden>Cancel Edit</button>
+        </div>
+
+        <p id="game-message" class="admin-message" role="status"></p>
+      </form>
+    </section>
+
+    <section class="admin-panel">
+      <h2>Scheduled Games</h2>
+      <p class="muted">Edit or remove games from your public schedule.</p>
+      <div id="game-list" class="admin-list"></div>
+    </section>
+
+    <section class="admin-panel">
+      <h2 id="video-form-heading">Add a Watch Live Video</h2>
+
+      <form id="video-form" class="admin-form">
+        <div class="field full">
+          <label for="video-title">Video Title</label>
+          <input id="video-title" required maxlength="150" placeholder="Example: Eureka vs. Fisher Basketball">
+        </div>
+
+        <div class="field full">
+          <label for="video-url">YouTube Video or Live Link</label>
+          <input id="video-url" type="url" required placeholder="https://www.youtube.com/live/...">
+        </div>
+
+        <div class="field">
+          <label for="video-type">Video Type</label>
+          <select id="video-type">
+            <option value="live">Live Broadcast</option>
+            <option value="replay">Replay</option>
+            <option value="highlight">Highlight</option>
+          </select>
+        </div>
+
+        <label class="check-row">
+          <input id="video-featured" type="checkbox">
+          Feature this video on Watch Live
+        </label>
+
+        <div class="admin-actions">
+          <button class="admin-button" id="save-video-button" type="submit">Add Video</button>
+          <button class="admin-button secondary" id="cancel-video-edit" type="button" hidden>Cancel Edit</button>
+        </div>
+
+        <p id="video-message" class="admin-message" role="status"></p>
+      </form>
+    </section>
+
+    <section class="admin-panel">
+      <h2>Watch Live Videos</h2>
+      <p class="muted">Add, edit, feature, or remove videos from the Watch Live page.</p>
+      <div id="admin-video-list" class="admin-list"></div>
+    </section>
+
+    <p class="muted">
+      Reminder: this version stores data in this browser. It does not sync changes
+      to other devices or visitors automatically.
+    </p>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>

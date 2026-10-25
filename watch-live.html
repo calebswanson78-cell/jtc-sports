@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Watch Live | JTC Sports</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      background: #050b1a;
+      color: #fff;
+    }
+
+    .watch-page {
+      max-width: 1400px;
+      margin: auto;
+      padding: 45px 24px 70px;
+    }
+
+    .watch-heading {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .watch-heading h1 {
+      font-size: clamp(36px, 6vw, 58px);
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .watch-heading p,
+    .video-type {
+      color: #b9c6d9;
+    }
+
+    .section-title {
+      margin-top: 42px;
+      margin-bottom: 20px;
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    /* Three videos per row on desktop */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 20px;
+      align-items: start;
+    }
+
+    .video-card {
+      min-width: 0;
+      overflow: hidden;
+      background: #101d31;
+      border: 1px solid #243b5b;
+      border-radius: 10px;
+    }
+
+    .video-player {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .video-player iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .video-card .video-player {
+      border-radius: 0;
+    }
+
+    .video-card h3 {
+      margin: 14px 14px 8px;
+      font-size: 17px;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+    }
+
+    .video-card .video-type {
+      margin: 0 14px 15px;
+      font-size: 13px;
+    }
+
+    /* Featured broadcast */
+    #featured-video {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    #featured-video .video-player {
+      border-radius: 10px;
+    }
+
+    /* Buttons */
+    .watch-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin: 35px 0 40px;
+    }
+
+    .watch-button {
+      display: inline-block;
+      padding: 13px 20px;
+      background: #168bff;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      text-align: center;
+      transition: background 0.2s ease;
+    }
+
+    .watch-button:hover {
+      background: #0872db;
+    }
+
+    .empty-message {
+      padding: 25px;
+      background: #101d31;
+      border: 1px solid #243b5b;
+      border-radius: 8px;
+      color: #b9c6d9;
+      text-align: center;
+    }
+
+    /* Two videos per row on tablets */
+    @media (max-width: 850px) {
+      .video-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .watch-page {
+        padding: 35px 18px 55px;
+      }
+    }
+
+    /* One video per row on phones */
+    @media (max-width: 560px) {
+      .video-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+      }
+
+      .watch-page {
+        padding: 28px 14px 45px;
+      }
+
+      .section-title {
+        font-size: 24px;
+      }
+
+      .watch-buttons {
+        flex-direction: column;
+      }
+
+      .watch-button {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-strip">FAITH. FAMILY. SPORTS.</div>
+
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <span class="brand-name">JTC SPORTS</span>
+    </a>
+
+    <button
+      class="mobile-menu-button"
+      id="mobile-menu-button"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-expanded="false">
+      ☰
+    </button>
+
+    <nav class="main-nav" id="main-nav">
+      <a href="index.html">Home</a>
+      <a href="watch-live.html" aria-current="page">Watch Live</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="highlights.html">Highlights</a>
+      <a href="articles.html">Articles</a>
+      <a href="teams.html">Teams</a>
+      <a href="sponsors.html">Sponsors</a>
+    </nav>
+  </header>
+
+  <main class="watch-page">
+
+    <section class="watch-heading">
+      <h1>WATCH <span style="color:#38a7ff;">LIVE</span></h1>
+      <p>Watch JTC Sports broadcasts, game replays, and more.</p>
+    </section>
+
+    <section id="featured-section" hidden>
+      <h2 class="section-title">Featured Broadcast</h2>
+      <div id="featured-video"></div>
+    </section>
+
+    <section>
+      <h2 class="section-title">All Broadcasts &amp; Replays</h2>
+
+      <div id="video-library" class="video-grid"></div>
+
+      <p id="empty-videos" class="empty-message">
+        No videos have been added yet. Check back soon!
+      </p>
+    </section>
+
+    <div class="watch-buttons">
+      <a
+        class="watch-button"
+        href="https://www.youtube.com/@JTCSports78"
+        target="_blank"
+        rel="noopener noreferrer">
+        Visit Our YouTube Channel
+      </a>
+
+      <a
+        class="watch-button"
+        href="https://www.youtube.com/@JTCSports78/streams"
+        target="_blank"
+        rel="noopener noreferrer">
+        View YouTube Livestreams
+      </a>
+
+      <a class="watch-button" href="schedule.html">
+        Game Schedule
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="footer-year"></span> JTC Sports. All rights reserved.</p>
+    <p>Faith. Family. Sports.</p>
+  </footer>
+
+  <script>
+    const STORAGE_KEY = "jtcSportsVideos";
+
+    function loadVideos() {
+      try {
+        const videos = JSON.parse(
+          localStorage.getItem(STORAGE_KEY) || "[]"
+        );
+
+        return Array.isArray(videos) ? videos : [];
+      } catch (error) {
+        console.error("Could not load videos:", error);
+        return [];
+      }
+    }
+
+    function createPlayer(video, featured) {
+      const wrapper = document.createElement("div");
+
+      if (!featured) {
+        wrapper.className = "video-card";
+      }
+
+      const player = document.createElement("div");
+      player.className = "video-player";
+
+      const iframe = document.createElement("iframe");
+
+      iframe.src =
+        "https://www.youtube-nocookie.com/embed/" +
+        encodeURIComponent(video.videoId);
+
+      iframe.title = video.title || "JTC Sports broadcast";
+      iframe.loading = "lazy";
+
+      iframe.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; " +
+        "gyroscope; picture-in-picture; web-share";
+
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+      iframe.allowFullscreen = true;
+
+      player.appendChild(iframe);
+      wrapper.appendChild(player);
+
+      if (!featured) {
+        const title = document.createElement("h3");
+        title.textContent = video.title || "JTC Sports Broadcast";
+        wrapper.appendChild(title);
+
+        const type = document.createElement("p");
+        type.className = "video-type";
+        type.textContent = video.type || "Broadcast";
+        wrapper.appendChild(type);
+      }
+
+      return wrapper;
+    }
+
+    function renderVideos() {
+      const videos = loadVideos();
+
+      const featuredSection =
+        document.getElementById("featured-section");
+
+      const featuredContainer =
+        document.getElementById("featured-video");
+
+      const library =
+        document.getElementById("video-library");
+
+      const empty =
+        document.getElementById("empty-videos");
+
+      featuredContainer.replaceChildren();
+      library.replaceChildren();
+
+      const featured = videos.find(video => video.featured);
+
+      if (featured && featured.videoId) {
+        featuredSection.hidden = false;
+
+        featuredContainer.appendChild(
+          createPlayer(featured, true)
+        );
+      } else {
+        featuredSection.hidden = true;
+      }
+
+      videos.forEach(video => {
+        if (!video.videoId) {
+          return;
+        }
+
+        if (!featured || video.id !== featured.id) {
+          library.appendChild(createPlayer(video, false));
+        }
+      });
+
+      empty.hidden = library.children.length > 0;
+    }
+
+    /* Mobile navigation */
+    const menuButton =
+      document.getElementById("mobile-menu-button");
+
+    const navigation =
+      document.getElementById("main-nav");
+
+    if (menuButton && navigation) {
+      menuButton.addEventListener("click", function () {
+        const isOpen = navigation.classList.toggle("active");
+
+        menuButton.setAttribute(
+          "aria-expanded",
+          String(isOpen)
+        );
+      });
+    }
+
+    /* Footer year */
+    document.getElementById("footer-year").textContent =
+      new Date().getFullYear();
+
+    /* Load the videos managed through the Admin page */
+    renderVideos();
+
+    /* Refresh the video list when local storage changes in another tab */
+    window.addEventListener("storage", function (event) {
+      if (event.key === STORAGE_KEY) {
+        renderVideos();
+      }
+    });
+  </script>
+
+</body>
+</html>
